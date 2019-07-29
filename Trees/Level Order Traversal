@@ -1,0 +1,51 @@
+from collections import defaultdict
+from collections import deque
+class Graph:
+    def __init__(self,V):
+        self.V=V
+        self.graph=defaultdict(list)
+
+    def addEdge(self,u,v):
+        self.graph[u].append(v)
+        #self.graph[v].append(u)
+
+    def topView(self,s):
+
+        if s is None:
+            return
+        queue=[]
+        queue.append(s)
+        while(len(queue)>0):
+            print(queue[0],end=" ")
+            s=queue.pop(0)
+
+            if s and self.graph[s][0]!=-1 :
+                queue.append(self.graph[s][0])
+            if s and self.graph[s][1]!=-1 :
+                queue.append(self.graph[s][1])
+
+
+
+n=int(input())
+g=Graph(n)
+for i in range(n):
+    a,b=input().split(" ")
+    a=int(a)
+    b=int(b)
+    g.addEdge(i+1,a)
+    g.addEdge(i+1,b)
+
+g.topView(1)
+
+
+-----------------------------------------------------------------------
+
+7
+2 3
+4 5
+6 7
+-1 -1
+-1 -1
+-1 -1
+-1 -1
+1 2 3 4 5 6 7 
