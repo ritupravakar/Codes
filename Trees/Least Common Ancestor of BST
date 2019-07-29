@@ -1,0 +1,63 @@
+from collections import defaultdict
+from collections import deque
+import collections
+
+
+class Graph:
+    def __init__(self, V):
+        self.V = V
+        self.graph = defaultdict(list)
+
+    def addEdge(self, u, v):
+        self.graph[u].append(v)
+        # self.graph[v].append(u)
+
+    def lca(self, root,s1,s2):
+        if root == -1:
+            return None
+        if root > s1 and root > s2 :
+            return self.lca(self.graph[root][0],s1,s2)
+        if root < s1 and root < s2 :
+            return self.lca(self.graph[root][1],s1,s2)
+
+
+        return root
+
+
+
+n = int(input())
+g = Graph(n)
+for i in range(n):
+    r = int(input())
+    if i == 0:
+        root = r
+    a, b = input().split(" ")
+    a = int(a)
+    b = int(b)
+    g.addEdge(r, a)
+    g.addEdge(r, b)
+k1=int(input())
+k2=int(input())
+print(g.lca(root,k1,k2))
+
+
+----------------------------------------------------------------
+7
+20
+8 22
+8
+4 12
+22
+-1 -1
+4
+-1 -1
+12
+10 14
+10
+-1 -1
+14
+-1 -1
+10
+4
+o/p :
+8
