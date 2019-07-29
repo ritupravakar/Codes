@@ -9,7 +9,7 @@ class Graph:
         self.graph[u].append(v)
         #self.graph[v].append(u)
 
-    def topView(self,s):
+    def LevelOrder(self,s):
 
         if s is None:
             return
@@ -35,7 +35,7 @@ for i in range(n):
     g.addEdge(i+1,a)
     g.addEdge(i+1,b)
 
-g.topView(1)
+g.LevelOrder(1)
 
 
 -----------------------------------------------------------------------
