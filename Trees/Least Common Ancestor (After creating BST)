@@ -1,0 +1,72 @@
+class Node:
+    def __init__(self,info):
+        self.info=info
+        self.left=None
+        self.right=None
+        self.level=None
+    def str(self):
+        return str(self.info)
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root=None
+
+    def create(self,val):
+
+        if self.root==None:
+            self.root=Node(val)
+        else:
+            current=self.root
+            while True:
+                if val<current.info:
+                    if current.left:
+                        current=current.left
+                    else:
+                        current.left=Node(val)
+                        break
+
+                elif val>current.info:
+                        if current.right:
+                            current=current.right
+                        else:
+                            current.right=Node(val)
+                            break
+                else:
+                    break
+
+
+    def lca(self, root,s1, s2):
+        if root is None:
+            return None
+        if root.info > s1 and root.info > s2 :
+            return self.lca(root.left,s1,s2)
+        if root.info < s1 and root.info < s2 :
+            return self.lca(root.right,s1,s2)
+
+
+        return root
+
+    def lca1(self,s1,s2):
+       # print(self.root.info)
+        return self.lca(self.root,s1,s2).info
+
+
+tree=BinarySearchTree()
+n=int(input())
+l=list(map(int,input().split(",")))
+for i in range(n):
+    tree.create(l[i])
+
+
+k1=int(input())
+k2=int(input())
+print(tree.lca1(k1,k2))
+
+---------------------------------------------------------------
+
+7
+20,8,22,4,12,10,14
+10
+22
+o/p :
+20
